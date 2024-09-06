@@ -1,1 +1,3 @@
-# Backend project for chat application
+# Chat application
+
+## Backend - Node.js & MongoDB
