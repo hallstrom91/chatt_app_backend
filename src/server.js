@@ -1,10 +1,16 @@
+require("dotenv").config({ path: [".env.development.local", ".env"] });
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-require("dotenv").config({ path: [".env.development.local", ".env"] });
+const { connectDB } = require("./utils/mongoDB");
+const userRoutes = require("./routes/userRoutes");
+const messageRoutes = require("./routes/messageRoutes");
+const { generateCSRFToken } = require("./utils/csrfUtils");
 
 const PORT = process.env.PORT;
 const app = express();
+
+connectDB().catch((err) => console.error("DB connection error", err));
 
 const corsOptions = {
   credentials: true,
@@ -29,6 +35,10 @@ app.use(
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
+// routes
+app.use("/", userRoutes);
+app.use("/", messageRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is live on port: ${PORT}`);
