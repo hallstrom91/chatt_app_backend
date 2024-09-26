@@ -3,7 +3,8 @@ const {
   createMessage,
   getMessagesByUserId,
   getMessagesByConversationId,
-} = require("../controllers/messageController");
+  deleteMessageById,
+} = require("../controllers/messageControllers");
 const { validateJwtToken } = require("../utils/jwtUtils");
 
 // express router
@@ -16,12 +17,12 @@ JWT REQUIRED MESSAGE ROUTES
 */
 
 router.post("/messages", validateJwtToken, createMessage);
-router.get("/messages/:userId", validateJwtToken, getMessagesByUserId);
+router.get("/messages", validateJwtToken, getMessagesByUserId);
 router.get(
   "/conversation/:conId",
   validateJwtToken,
   getMessagesByConversationId
 );
-router.delete("/messages/:msgId", validateJwtToken);
+router.delete("/messages/:msgId", validateJwtToken, deleteMessageById);
 
 module.exports = router;
