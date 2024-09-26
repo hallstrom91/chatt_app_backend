@@ -21,6 +21,7 @@ const validateCSRFToken = (req, res, next) => {
   const csrfToken = req.body.csrfToken || req.headers["x-csrf-token"];
 
   if (csrfToken && csrfToken === req.app.locals.csrfToken) {
+    /* delete req.app.locals.csrfToken; */ // use to make csrfToken one-time request value
     return next();
   }
 
