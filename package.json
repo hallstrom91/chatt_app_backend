@@ -2,6 +2,7 @@
   "name": "chatt_app_backend",
   "version": "1.0.0",
   "description": "backend for chat app",
+  "type": "commonjs",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sentry/node": "^8.32.0",
+    "@sentry/profiling-node": "^8.32.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "csrf-csrf": "^3.0.6",
